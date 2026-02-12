@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PediaMetrics | Pediatric Growth Assessment</title>
+    <meta
+      name="description"
+      content="PediaMetrics transforms pediatric measurements into WHO-based Z-scores, percentiles, and clinical interpretations for fast, reliable growth assessment."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f9f7f3;
+        --bg-soft: #fffdf9;
+        --surface: #ffffff;
+        --ink: #163329;
+        --ink-soft: #35584b;
+        --accent: #0f8f76;
+        --accent-2: #f6a43b;
+        --border: #dbe7e1;
+        --shadow: 0 16px 40px rgba(9, 53, 41, 0.12);
+        --radius: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Source Sans 3", "Trebuchet MS", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 2%, rgba(246, 164, 59, 0.22), transparent 32%),
+          radial-gradient(circle at 96% 18%, rgba(15, 143, 118, 0.22), transparent 30%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+        line-height: 1.55;
+      }
+
+      .page-shell {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        padding: 2.4rem 0 3.4rem;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .brand img {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .brand strong {
+        font-family: "Fraunces", Georgia, serif;
+        font-size: 1.2rem;
+        letter-spacing: 0.02em;
+      }
+
+      .hero {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) + 4px);
+        box-shadow: var(--shadow);
+        padding: clamp(1.4rem, 3vw, 2.6rem);
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 1.5rem;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        font-family: "Fraunces", Georgia, serif;
+        line-height: 1.08;
+        margin: 0 0 1rem;
+        font-size: clamp(1.9rem, 4vw, 3.2rem);
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: clamp(1rem, 1.75vw, 1.18rem);
+      }
+
+      .hero-visual {
+        background: linear-gradient(155deg, #e8faf4 0%, #fff8ec 100%);
+        border-radius: var(--radius);
+        border: 1px solid #d4ece4;
+        min-height: 260px;
+        padding: 1rem;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-visual img {
+        width: min(280px, 74%);
+        height: auto;
+        animation: float 5s ease-in-out infinite;
+      }
+
+      .cta-row {
+        margin-top: 1.35rem;
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 0.78rem 1.2rem;
+        border: 1px solid transparent;
+        transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(15, 143, 118, 0.28);
+      }
+
+      .btn-primary:hover {
+        background: #0c7d68;
+      }
+
+      .btn-secondary {
+        background: #fff;
+        border-color: #d8e7df;
+        color: var(--ink);
+      }
+
+      .appstore-btn {
+        display: inline-block;
+        line-height: 0;
+        border-radius: 10px;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .appstore-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(15, 143, 118, 0.18);
+      }
+
+      .appstore-btn img {
+        width: 120px;
+        height: 40px;
+        display: block;
+      }
+
+      .main-grid {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 1.15rem;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+        box-shadow: 0 10px 28px rgba(8, 48, 37, 0.08);
+      }
+
+      .card h2 {
+        font-family: "Fraunces", Georgia, serif;
+        margin: 0 0 0.65rem;
+        font-size: 1.5rem;
+      }
+
+      .card h3 {
+        font-family: "Fraunces", Georgia, serif;
+        margin: 1rem 0 0.45rem;
+        font-size: 1.1rem;
+      }
+
+      ul {
+        margin: 0.45rem 0 0;
+        padding-left: 1.05rem;
+      }
+
+      li + li {
+        margin-top: 0.3rem;
+      }
+
+      .metric-chip-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 0.75rem;
+      }
+
+      .metric-chip {
+        background: #f1fbf8;
+        border: 1px solid #d2ede4;
+        color: #0f5e4f;
+        border-radius: 999px;
+        padding: 0.36rem 0.65rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .results-block {
+        margin-top: 0.95rem;
+        background: #fff9ef;
+        border: 1px dashed #f1c98b;
+        border-radius: 14px;
+        padding: 0.85rem;
+      }
+
+      .qr-panel {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: #f4fbff;
+        border: 1px solid #d5e8f0;
+        border-radius: 14px;
+        padding: 0.8rem;
+      }
+
+      .qr-panel img {
+        width: 96px;
+        height: 96px;
+        border-radius: 10px;
+        border: 1px solid #b7d3df;
+        background: #fff;
+      }
+
+      .audience-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      .audience-list span {
+        background: #f3f9f6;
+        border: 1px solid #d6e9e0;
+        border-radius: 10px;
+        padding: 0.45rem 0.55rem;
+        font-weight: 600;
+        color: #215345;
+      }
+
+      .disclaimer {
+        margin-top: 1rem;
+        background: #fff0f0;
+        border: 1px solid #f0c9c9;
+        border-radius: 14px;
+        padding: 0.9rem;
+        color: #652323;
+      }
+
+      .disclaimer strong {
+        font-family: "Fraunces", Georgia, serif;
+      }
+
+      footer {
+        margin-top: 1.25rem;
+        padding: 1.15rem;
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid var(--border);
+        display: flex;
+        gap: 0.75rem;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .legal-links {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .legal-links a {
+        color: #0e7c66;
+        font-weight: 600;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: rise 700ms cubic-bezier(.18,.84,.38,.99) forwards;
+      }
+
+      .d1 { animation-delay: 120ms; }
+      .d2 { animation-delay: 260ms; }
+      .d3 { animation-delay: 380ms; }
+
+      .desktop-only {
+        display: flex;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .main-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 220px;
+        }
+      }
+
+      @media (max-width: 740px) {
+        .page-shell {
+          width: min(1100px, 94vw);
+          padding-top: 1.2rem;
+        }
+
+        .audience-list {
+          grid-template-columns: 1fr;
+        }
+
+        .desktop-only {
+          display: none;
+        }
+
+        .top-bar {
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="top-bar reveal d1">
+        <div class="brand" aria-label="PediaMetrics">
+          <img src="PediaMetricsLogo.png" alt="PediaMetrics logo" />
+          <strong>PediaMetrics</strong>
+        </div>
+        <a class="btn btn-secondary" href="mailto:edwarmartinez@yahoo.com">Contact us</a>
+      </header>
+
+      <section class="hero reveal d1">
+        <div>
+          <h1>PediaMetrics turns complex growth data into decisions you can trust.</h1>
+          <p>
+            A professional pediatric growth assessment app that transforms raw measurements into clear,
+            actionable insights using WHO growth standards.
+          </p>
+          <div class="cta-row">
+            <a
+              class="appstore-btn"
+              href="https://apps.apple.com/app/6756817829"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download PediaMetrics from the App Store"
+            >
+              <img src="Download.png" alt="Download on the App Store" />
+            </a>
+            <a class="btn btn-secondary" href="mailto:edwarmartinez@yahoo.com">Contact us</a>
+          </div>
+          <div class="qr-panel desktop-only" aria-label="Desktop QR code to download PediaMetrics from the App Store">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=https%3A%2F%2Fapps.apple.com%2Fapp%2F6756817829"
+              alt="QR code to open PediaMetrics in the App Store"
+            />
+            <p style="margin: 0; color: var(--ink-soft)">
+              Scan this QR code with your phone to open PediaMetrics directly in the App Store.
+            </p>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="PediaMetricsLogo.png" alt="" />
+        </div>
+      </section>
+
+      <main class="main-grid">
+        <section class="card reveal d2">
+          <h2>What PediaMetrics Does</h2>
+          <p>
+            PediaMetrics calculates and interprets WHO-based Z-scores and percentiles for key pediatric growth indicators.
+          </p>
+          <div class="metric-chip-wrap" aria-label="Growth indicators">
+            <span class="metric-chip">Weight-for-Age (WFA)</span>
+            <span class="metric-chip">Height-for-Age (HFA)</span>
+            <span class="metric-chip">Weight-for-Length / Height (WFL/H)</span>
+            <span class="metric-chip">BMI-for-Age</span>
+            <span class="metric-chip">Head Circumference-for-Age (HCFA)</span>
+          </div>
+          <div class="results-block">
+            <h3>Every result includes</h3>
+            <ul>
+              <li>Z-score</li>
+              <li>Percentile</li>
+              <li>
+                Clinical interpretation: severe deficit, below normal range, within normal range,
+                above normal range, or severe excess
+              </li>
+            </ul>
+          </div>
+          <p style="margin-top: 0.9rem">
+            This removes ambiguity and eliminates manual chart interpretation.
+          </p>
+        </section>
+
+        <section class="card reveal d2">
+          <h2>Built for Clinical Accuracy</h2>
+          <ul>
+            <li>Uses WHO 2006 and WHO 2007 growth references.</li>
+            <li>Automatically switches between days and months when required.</li>
+            <li>Correctly applies age cutoffs for children under and over 5 years.</li>
+            <li>Centralized calculations for deterministic and consistent outputs.</li>
+            <li>Validated to align with clinical expectations, not loose approximations.</li>
+          </ul>
+
+          <h3>Practical for Real-World Use</h3>
+          <ul>
+            <li>Clean and distraction-free interface optimized for speed and clarity.</li>
+            <li>Works offline once installed.</li>
+            <li>Suitable for clinics, hospitals, and home use.</li>
+          </ul>
+        </section>
+
+        <section class="card reveal d3">
+          <h2>Designed for Professionals and Parents</h2>
+          <h3>For healthcare professionals</h3>
+          <ul>
+            <li>Fast assessments during consultations.</li>
+            <li>Interpretations that are easy to explain.</li>
+            <li>Reliable numbers you can trust.</li>
+          </ul>
+          <h3>For parents</h3>
+          <ul>
+            <li>Clear, understandable results in plain language.</li>
+            <li>Confidence when monitoring growth trends over time.</li>
+          </ul>
+        </section>
+
+        <section class="card reveal d3">
+          <h2>Privacy-First by Design</h2>
+          <ul>
+            <li>No ads.</li>
+            <li>No selling user data.</li>
+            <li>No unnecessary tracking.</li>
+            <li>All data remains on the user's device.</li>
+          </ul>
+
+          <h3>Intended Audience</h3>
+          <div class="audience-list" aria-label="Intended audience">
+            <span>Pediatricians</span>
+            <span>Nurses</span>
+            <span>Healthcare Providers</span>
+            <span>Nutritionists</span>
+            <span>Dietitians</span>
+            <span>Medical Students</span>
+            <span>Parents</span>
+          </div>
+        </section>
+      </main>
+
+      <section class="disclaimer reveal d3">
+        <strong>Medical Disclaimer:</strong>
+        This app is for informational and educational purposes only and does not replace professional medical advice.
+        Always consult a qualified healthcare provider before making medical decisions.
+      </section>
+
+      <footer class="reveal d3">
+        <p style="margin: 0">Download today and assess pediatric growth with confidence.</p>
+        <div class="legal-links">
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">
+            Terms of Use
+          </a>
+          <a
+            href="https://docs.google.com/document/d/1TyLVHBE4xunbDWWFEmKByiX5T9nK3a9gDe-L7mbIqeo/edit?tab=t.0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Privacy Policy
+          </a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
