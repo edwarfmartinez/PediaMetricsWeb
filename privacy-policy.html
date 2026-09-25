@@ -1,17 +1,44 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TWDJQSFV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "GT-TWDJQSFV", {
+        send_page_view: true,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy | PediaMetrics</title>
     <meta
       name="description"
-      content="Privacy Policy for PediaMetrics, a pediatric growth assessment app."
+      content="Learn how PediaMetrics handles pediatric measurement data, local device storage, support emails, analytics, and third-party links."
     />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b3158" />
+    <link rel="canonical" href="https://pediametrics.valioralabs.com/privacy-policy.html" />
+    <link rel="icon" href="assets/pediametrics-icon.webp" type="image/webp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PediaMetrics" />
+    <meta property="og:title" content="Privacy Policy | PediaMetrics" />
+    <meta
+      property="og:description"
+      content="How PediaMetrics handles pediatric measurement data, local device storage, analytics, and support communications."
+    />
+    <meta property="og:url" content="https://pediametrics.valioralabs.com/privacy-policy.html" />
+    <meta property="og:image" content="https://pediametrics.valioralabs.com/PediaMetricsLogo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
     <style>
@@ -128,11 +155,11 @@
       }
     </style>
   </head>
-  <body>
+  <body data-page-type="privacy_policy">
     <div class="page-shell">
       <article class="policy-card">
         <h1>Privacy Policy</h1>
-        <p class="meta">Last updated: September 9, 2026</p>
+        <p class="meta">Last updated: September 24, 2026</p>
         <p>
           PediaMetrics ("we", "our", or "us") respects your privacy. This Privacy Policy explains how information is
           handled when you use the PediaMetrics mobile app and this website.
@@ -160,23 +187,38 @@
           reliability, and performance. This analytics data relates only to app usage and does not include personal
           information or any health or measurement data entered in the app.
         </p>
+        <p>
+          This website uses Google Analytics 4 to measure page visits, engagement with product information, and clicks
+          that lead to the Apple App Store. Website analytics may process technical and acquisition information such as
+          the page visited, browser or device category, approximate country, referring website, campaign parameters,
+          and the location and wording of an App Store link. Google Analytics may use first-party identifiers for this
+          measurement. Advertising-personalization signals and Google Signals are disabled in the website configuration.
+        </p>
+        <p>
+          Website analytics does not receive pediatric measurements, patient profiles, or other information entered in
+          the PediaMetrics app. Learn more in
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
+        </p>
         <ul>
           <li>No in-app ads are displayed.</li>
           <li>No sale of user data.</li>
           <li>No unnecessary cross-app tracking.</li>
+          <li>Website analytics is used to evaluate product information and App Store conversion, not personalized ads.</li>
         </ul>
 
         <h2>4. Third-Party Services and Links</h2>
         <p>
-          The app and website may link to third-party services (for example, the Apple App Store). Those services
-          have their own privacy policies and terms.
+          The website uses Google Analytics and may link to third-party services such as the Apple App Store. Those
+          services have their own privacy policies and terms.
         </p>
 
         <h2>5. Data Retention</h2>
         <p>
           We do not collect or retain app-submitted personal information or health records on our servers. Limited,
           non-personal app-usage analytics may be retained only as needed to analyze and improve the app. Email
-          communications are retained only as needed to provide support and comply with legal obligations.
+          communications are retained only as needed to provide support and comply with legal obligations. Website
+          analytics data is retained according to the settings and safeguards configured for the Google Analytics
+          property.
         </p>
 
         <h2>6. Children's Privacy</h2>
@@ -200,6 +242,16 @@
         <div class="link-row">
           <a class="btn btn-primary" href="index.html">Back to Home</a>
           <a
+            class="btn btn-primary"
+            href="https://apps.apple.com/app/6756817829"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-app-store-link
+            data-cta-location="privacy_policy"
+          >
+            View PediaMetrics on the App Store
+          </a>
+          <a
             class="btn btn-secondary"
             href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
             target="_blank"
@@ -210,5 +262,6 @@
         </div>
       </article>
     </div>
+    <script src="analytics.js" defer></script>
   </body>
 </html>
